@@ -1,7 +1,8 @@
 import './App.css'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useParams, Outlet } from 'react-router-dom'
 
-// como soluciono esto 👇
+//Outlet componente (si la ruta esta anidada deje un espacio) 
+
 const Home = () => <h1>home</h1>
 
 // 👇 componentes renderiza elementos
@@ -25,7 +26,26 @@ const SearchPage = () => {
    )
 }
 
-const Tacos = () => <h1>Tacos</h1>
+const Tacos = () => {
+  const { tacoName } = useParams()
+
+  return (
+    <div>
+      <h1>Tacos</h1>
+      {tacoName}
+      <Link to="details"> Ir a los deatalles</Link>
+      <Outlet />
+    </div>
+  );
+}
+
+const TacoDetails = () => {
+  const { tacoName } = useParams()
+
+  return(
+      <h1>Taco Details {tacoName}</h1>
+  )
+}
 
 function App() {  
   return (
@@ -42,10 +62,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/search-page' element={<SearchPage />} />
-        <Route path='/tacos/' element={<Tacos />} />
+        <Route path='/tacos/:tacoName' element={<Tacos />}>
+          <Route path='details' element={<TacoDetails />} />
+        </Route>
+        <Route path='*' element={<h1>Not Found</h1>} />
       </Routes>
     </div>
   )
 }
-
+//ruta anidada 
 export default App
