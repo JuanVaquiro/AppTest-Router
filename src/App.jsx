@@ -1,9 +1,10 @@
 import './App.css'
 import { Link, Route, Routes, useParams, Outlet } from 'react-router-dom'
+import button from './pages/components/button'
 
 //Outlet componente (si la ruta esta anidada deje un espacio) 
 
-const Home = () => <h1>home</h1>
+const Home = () => <h1 className='text-gray-300 bg-cyan-500 text-3xl  '>home</h1>
 
 // 👇 componentes renderiza elementos
 const SearchPage = () => {
@@ -16,7 +17,7 @@ const SearchPage = () => {
  
    return (
      <div>
-        <h1>SearchPages</h1>
+        <h1 className='text-sky-400'>SearchPages</h1>
         <ul>
           {tacos.map(taco => (
             <li key={taco}><Link to={`/tacos/${taco}`}>{taco}</Link></li>
@@ -51,7 +52,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>TestRouter 🐵</h1>
+        <h1 className=''>TestRouter 🐵</h1>
         <nav>
           <ul>
             <li><Link to='/'>Home</Link></li>
